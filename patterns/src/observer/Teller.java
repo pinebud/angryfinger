@@ -25,7 +25,7 @@ public class Teller {
 		
 		@Override
 		public void gotIt(String message) {
-			System.out.println("I'm Jack, Parden?");		// Here the inline method access host class's non-private field.	
+			System.out.println("I'm Jack, Parden?");		
 		}
 		
 	});
