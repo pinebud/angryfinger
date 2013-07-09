@@ -1,0 +1,43 @@
+Each element is a case sensitive alphabet, to simplify the parsing work, Ò->Ó is replaced by ">", there might be more than 1 character on the left side and only one on the right side, the following is an example: A,B,C>D
+ 
+Sample Input and Output
+Input
+A>B B>C
+A>C
+Output
+true
+ 
+Input
+A,B>C D,E>A E>B
+E,D>C F,E>C
+Output
+true
+false
+ 
+Input
+A>B A,B>C
+A>C
+Output
+trueEach element is a case sensitive alphabet, to simplify the parsing work, Ò->Ó is replaced by ">", there might be more than 1 character on the left side and only one on the right side, the following is an example: A,B,C>D
+ 
+Sample Input and Output
+Input
+A>B B>C
+A>C
+Output
+true
+ 
+Input
+A,B>C D,E>A E>B
+E,D>C F,E>C
+Output
+true
+false
+ 
+Input
+A>B A,B>C
+A>C
+Output
+true
+ 
+Please complement the matchRule method in Solution class:
