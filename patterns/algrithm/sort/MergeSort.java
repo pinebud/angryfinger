@@ -3,7 +3,7 @@ package sort;
 
 public class MergeSort implements ISort{
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Object[] sort(Object[] rawArray, SortOrder order) {
 		int n = rawArray.length;
@@ -18,7 +18,16 @@ public class MergeSort implements ISort{
 		for(int k=0;k<n;k++){
 			
 			if(i==halfOfN){
-				
+				for(int l=k;l<n;l++,j++){
+					sortedList[l]=secondHalfSortedArray[j];
+				}
+				break;
+			}
+			if(j==n-halfOfN){
+				for(int l=k;l<n;l++,i++){
+					sortedList[l]=firstHalfSortedArray[i];
+				}
+				break;
 			}
 			
 			Comparable a = (Comparable) firstHalfSortedArray[i];
