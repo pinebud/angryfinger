@@ -1,17 +1,55 @@
 package factory;
 
+import java.io.File;
 import java.util.*;
+
+import util.FileUtility;
 
 public class DataFactory {
 	
-	/**
-	 * {4,5,6,8,3,7,2,1};
-	 * @return
-	 */
-	public static List<Integer> generateUnsortedIntList(){
-		List<Integer> list = new ArrayList<Integer>();
-		list.add(4);list.add(5);list.add(6);list.add(8);
-		list.add(3);list.add(7);list.add(2);list.add(1);		
-		return list;
+	public static final File TEST_DATA_FILE = new File(System.getProperty("user.dir")+"/test.data");
+	
+	private static final int BATCH_SIZE = 100000;
+	
+	public static int[] generateRandomIntArray(){	
+		int[] intArray = new int[BATCH_SIZE];
+		Random rnd = new Random();
+		for(int i=0;i<BATCH_SIZE;i++){
+			intArray[i]=rnd.nextInt(BATCH_SIZE);
+		}
+		return intArray;
 	}
+	
+	public static String serialize(int[] intArray){
+		StringBuilder sbuilder = new StringBuilder();
+		for(int i=0;i<BATCH_SIZE;i++){
+			sbuilder.append(intArray[i]+",");
+		}
+		return sbuilder.substring(0, sbuilder.length()-1);
+	}
+	
+	/**
+	 * Normally the size of strArray should be equal to BATCH_SIZE
+	 * @param intStringArray
+	 * @return
+	 * @throws InvalidParsedArraySize 
+	 */
+	public static int[] unserialize(String intStringArray) throws InvalidParsedArraySize{
+		String[] strArray = intStringArray.split(",");
+		int n = strArray.length;
+		if(n!=BATCH_SIZE)
+			throw new InvalidParsedArraySize();
+		int[] intArray = new int[n];
+		for(int i=0;i<n;i++){
+			intArray[i]= Integer.valueOf(strArray[i]);
+		}
+		return intArray;
+	}
+	
+	public static void main(String[] args){
+		FileUtility.append(TEST_DATA_FILE, serialize(generateRandomIntArray()));
+	}
+	
+	
+	
 }

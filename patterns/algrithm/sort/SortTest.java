@@ -1,16 +1,37 @@
 package sort;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import util.FileUtility;
+
+import factory.DataFactory;
+import factory.InvalidParsedArraySize;
 import factory.SorterFactory;
 
 @SortWithType(SortType.merge)
 public class SortTest {
 	
+	private static final File TEST_RESULT_FILE=new File(System.getProperty("user.dir")+"/testResult.txt");
+	
 	private SortType[] sortTypes = null;
 
+
+	@Test
+	public void perfTestForSort() throws InvalidParsedArraySize{
+		int[] unsortedArray = DataFactory.unserialize(FileUtility.readFileAsString(DataFactory.TEST_DATA_FILE).trim());
+		Integer[] unsortedBoxedIntArray = boxIntArray(unsortedArray);
+		for(int i = 0;i<10;i++){
+			for (SortType sortType : sortTypes) {
+				int[] output = testSort(unsortedBoxedIntArray, sortType, SortOrder.asc);
+				FileUtility.append(TEST_RESULT_FILE, DataFactory.serialize(output));
+			}
+		}
+	}
+	
 	@Test
 	public void testEvenlySort() {	
 		for (SortType sortType : sortTypes) {
@@ -62,5 +83,13 @@ public class SortTest {
 			newArray[i] = (Integer) array[i];
 		}
 		return newArray;
+	}
+	
+	private Integer[] boxIntArray(int[] array) {
+		Integer[] boxedArray = new Integer[array.length];
+		for (int i = 0; i < array.length; i++) {
+			boxedArray[i] = (Integer) array[i];
+		}
+		return boxedArray;
 	}
 }
