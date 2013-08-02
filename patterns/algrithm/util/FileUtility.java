@@ -134,7 +134,7 @@ public class FileUtility {
 	/**
 	 * 
 	 */
-	public static boolean append(File dest, String newline) {
+	public static boolean appendLine(File dest, String newline) {
 		if (dest == null)
 			return false;
 		FileWriter fw = null;
@@ -147,7 +147,8 @@ public class FileUtility {
 			if (dest.isFile()) {
 				fw = new FileWriter(dest, true);
 				bw = new BufferedWriter(fw);
-				bw.write(newline);
+				bw.write(newline+"\n");
+//				bw.write(newline+System.getProperty("Line.Separater"));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

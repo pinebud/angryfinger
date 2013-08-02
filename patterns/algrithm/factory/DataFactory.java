@@ -20,6 +20,14 @@ public class DataFactory {
 		return intArray;
 	}
 	
+	public static Integer[] generateReversedSortedIntArray(){
+		Integer[] intArray = new Integer[BATCH_SIZE];
+		for(int i=BATCH_SIZE-1;i>=0;i--){
+			intArray[i]=i;
+		}
+		return intArray;
+	}
+	
 	public static String serialize(int[] intArray){
 		StringBuilder sbuilder = new StringBuilder();
 		for(int i=0;i<BATCH_SIZE;i++){
@@ -47,7 +55,7 @@ public class DataFactory {
 	}
 	
 	public static void main(String[] args){
-		FileUtility.append(TEST_DATA_FILE, serialize(generateRandomIntArray()));
+		FileUtility.appendLine(TEST_DATA_FILE, serialize(generateRandomIntArray()));
 	}
 	
 	

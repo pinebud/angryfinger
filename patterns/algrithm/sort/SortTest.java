@@ -18,8 +18,31 @@ public class SortTest {
 	private static final File TEST_RESULT_FILE=new File(System.getProperty("user.dir")+"/testResult.txt");
 	
 	private SortType[] sortTypes = null;
-
-
+	
+	@Test
+	public void testTheBestCase(){
+		Integer[] unsortedBoxedIntArray = DataFactory.generateReversedSortedIntArray();
+		for(int i = 0;i<10;i++){
+			for (SortType sortType : sortTypes) {
+				int[] output = testSort(unsortedBoxedIntArray, sortType, SortOrder.desc);
+				FileUtility.appendLine(TEST_RESULT_FILE, DataFactory.serialize(output));
+				
+			}
+		}
+	}
+	
+	@Test
+	public void testTheWorstCase(){
+		Integer[] unsortedBoxedIntArray = DataFactory.generateReversedSortedIntArray();
+		for(int i = 0;i<10;i++){
+			for (SortType sortType : sortTypes) {
+				int[] output = testSort(unsortedBoxedIntArray, sortType, SortOrder.asc);
+				FileUtility.appendLine(TEST_RESULT_FILE, DataFactory.serialize(output));
+				
+			}
+		}
+	}
+	
 	@Test
 	public void perfTestForSort() throws InvalidParsedArraySize{
 		int[] unsortedArray = DataFactory.unserialize(FileUtility.readFileAsString(DataFactory.TEST_DATA_FILE).trim());
@@ -27,7 +50,7 @@ public class SortTest {
 		for(int i = 0;i<10;i++){
 			for (SortType sortType : sortTypes) {
 				int[] output = testSort(unsortedBoxedIntArray, sortType, SortOrder.asc);
-				FileUtility.append(TEST_RESULT_FILE, DataFactory.serialize(output));
+				FileUtility.appendLine(TEST_RESULT_FILE, DataFactory.serialize(output));
 			}
 		}
 	}
