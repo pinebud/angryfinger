@@ -7,7 +7,7 @@ public class MergeSort implements ISort{
 	@Override
 	public Object[] sort(Object[] rawArray, SortOrder order) {
 		int n = rawArray.length;
-		if(rawArray.length==1)
+		if(rawArray.length<=1)
 			return rawArray;
 		
 		Object[] sortedList = new Object[n];//new ArrayList<T>();		

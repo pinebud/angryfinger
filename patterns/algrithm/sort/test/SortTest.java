@@ -1,4 +1,4 @@
-package sort;
+package sort.test;
 
 import java.io.File;
 
@@ -6,6 +6,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import others.Constants;
+
+import sort.ISort;
+import sort.SortOrder;
+import sort.SortType;
+import sort.SortWithType;
 import util.FileUtility;
 
 import factory.DataFactory;
@@ -15,7 +21,7 @@ import factory.SorterFactory;
 @SortWithType(SortType.merge)
 public class SortTest {
 	
-	private static final File TEST_RESULT_FILE=new File(System.getProperty("user.dir")+"/testResult.txt");
+	private static final File TEST_RESULT_FILE=new File(Constants.OUTPUT_FOLDER+"/testResult.txt");
 	
 	private SortType[] sortTypes = null;
 	

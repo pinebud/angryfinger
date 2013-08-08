@@ -1,7 +1,9 @@
 package util;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Stack;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -94,6 +96,40 @@ public class FileUtility {
 			}
 		}
 		return true;
+	}
+	
+	public static Object[] readFileAsIntegerArray(File source){
+		if (source == null || !source.exists())
+			return new Integer[0];
+		List<Integer> list = new ArrayList<Integer>();
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			
+				fr = new FileReader(source);
+				br = new BufferedReader(fr);
+				String data = "";
+				while ((data = br.readLine()) != null) {
+					String trimdata = data.trim();
+					if(!trimdata.equals(""))
+						list.add(Integer.valueOf(data));
+				}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return list.toArray();
 	}
 
 	/**
