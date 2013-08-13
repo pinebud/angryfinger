@@ -1,13 +1,13 @@
-package inversions.test;
+package sort.applicatoins.inversions.test;
 
 import java.io.File;
 
-import inversions.Inversion;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import others.Constants;
+import sort.applications.inversions.Inversion;
 import util.FileUtility;
 
 public class InversionsTest {

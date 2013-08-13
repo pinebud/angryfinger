@@ -1,4 +1,4 @@
-package sort;
+package sort.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,9 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import sort.ISort;
+import sort.SortOrder;
 
 /**
  * The pivot will be swapped to the very left of the input array.

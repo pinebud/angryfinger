@@ -1,4 +1,7 @@
-package sort;
+package sort.impl;
+
+import sort.ISort;
+import sort.SortOrder;
 
 public class BubbleSort implements ISort{
 
