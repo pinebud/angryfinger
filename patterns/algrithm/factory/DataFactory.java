@@ -30,7 +30,8 @@ public class DataFactory {
 	
 	public static String serialize(int[] intArray){
 		StringBuilder sbuilder = new StringBuilder();
-		for(int i=0;i<BATCH_SIZE;i++){
+		int n = intArray.length;
+		for(int i=0;i<n;i++){
 			sbuilder.append(intArray[i]+",");
 		}
 		return sbuilder.substring(0, sbuilder.length()-1);
