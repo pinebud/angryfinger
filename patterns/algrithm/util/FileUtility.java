@@ -168,6 +168,41 @@ public class FileUtility {
 	}
 	
 	/**
+	 * This function can just be used to copy file
+	 */
+	public static List<String> readFileByLineAsStringList(File source) {
+		List<String> list = new ArrayList<String>();
+		if (source == null || !source.exists())
+			return list;
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			
+				fr = new FileReader(source);
+				br = new BufferedReader(fr);
+				String data = "";
+				while ((data = br.readLine()) != null) {
+					list.add(data);
+				}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	/**
 	 * 
 	 */
 	public static boolean appendLine(File dest, String newline) {
