@@ -17,13 +17,36 @@ public class MedianMaintanence {
 		bigSetHeap = new PriorityQueue<Integer>(heapSize);
 		smallSetHeap = new PriorityQueue<Integer>(heapSize, new ReversedHeapComparator());
 	}
-	
+
 	public int func(){
 		int n = inputArray.length;
+		if(n<1)
+			return -1;
 		int sum = 0;
-		for(int i=0;i<n;i++){
+		smallSetHeap.add(inputArray[0]);
+		for(int i=1;i<n;i++){
 			Integer e = inputArray[i];
+			int smallSetSize = smallSetHeap.size();
+			int bigSetSize = bigSetHeap.size();
+			int sizeInterval = bigSetSize-smallSetSize;
+			Integer maxInSmallSet = smallSetHeap.peek();
 			
+			if(e.compareTo(maxInSmallSet)<0){
+				smallSetHeap.add(e);
+			}else{
+				bigSetHeap.add(e);
+			}
+			
+			sizeInterval = bigSetHeap.size() - smallSetHeap.size();
+			
+			if(sizeInterval>0){
+				smallSetHeap.add(bigSetHeap.poll());
+			}else if(sizeInterval<-1){
+				bigSetHeap.add(smallSetHeap.poll());
+			}
+			
+			int median = smallSetHeap.peek();
+			sum+=median;
 		}
 		return sum%10000;
 	}
