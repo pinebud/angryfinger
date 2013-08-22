@@ -13,16 +13,22 @@ public class MedianMaintanence {
 	
 	public MedianMaintanence(Integer[] inputArray){	
 		this.inputArray = inputArray;
-		int heapSize = (inputArray.length+1)/2; 
-		bigSetHeap = new PriorityQueue<Integer>(heapSize);
-		smallSetHeap = new PriorityQueue<Integer>(heapSize, new ReversedHeapComparator());
+		int heapSize = (inputArray.length+1)/2;
+		if(heapSize>0){
+			bigSetHeap = new PriorityQueue<Integer>(heapSize);
+			smallSetHeap = new PriorityQueue<Integer>(heapSize, new ReversedHeapComparator());
+		}else{
+
+			bigSetHeap = new PriorityQueue<Integer>();
+			smallSetHeap = new PriorityQueue<Integer>(10, new ReversedHeapComparator());
+		}
 	}
 
 	public int func(){
 		int n = inputArray.length;
 		if(n<1)
 			return -1;
-		int sum = 0;
+		int sum = inputArray[0];
 		smallSetHeap.add(inputArray[0]);
 		for(int i=1;i<n;i++){
 			Integer e = inputArray[i];
