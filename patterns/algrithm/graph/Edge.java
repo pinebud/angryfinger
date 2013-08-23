@@ -1,14 +1,14 @@
 package graph;
 
 public class Edge {
-	IWeight weight = null;
+	int weight = 0;
 	Vertex source = null;
 	Vertex target = null;
 	public Edge(Vertex source, Vertex target){
 		
 	}
 	
-	public void setWeight(IWeight weight){
+	public void setWeight(int weight){
 		this.weight = weight;
 	}
 	
