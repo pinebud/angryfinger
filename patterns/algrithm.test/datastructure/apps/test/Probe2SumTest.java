@@ -25,7 +25,7 @@ public class Probe2SumTest {
 	@Test
 	public void testLargeVolume(){
 		Long[] inputArray = FileUtility.readFileAsLongArray(inputFile);
-		int num = Probe2Sum.probe2Sum(inputArray, 0, 20001);
+		int num = Probe2Sum.probe2Sum(inputArray, -10000, 10000);
 		System.out.println(num);
 	}
 

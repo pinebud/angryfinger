@@ -136,7 +136,7 @@ public class FileUtility {
 		return array;	
 	}
 	
-	public static Object[] readFileAsIntegerArray(File source){
+	public static Integer[] readFileAsIntegerArray(File source){
 		if (source == null || !source.exists())
 			return new Integer[0];
 		List<Integer> list = new ArrayList<Integer>();
@@ -167,7 +167,13 @@ public class FileUtility {
 				e.printStackTrace();
 			}
 		}
-		return list.toArray();
+		
+		
+		Integer[] array = new Integer[list.size()];
+		for(int i =0;i<array.length;i++){
+			array[i] = list.get(i); 
+		}
+		return array;
 	}
 
 	/**
