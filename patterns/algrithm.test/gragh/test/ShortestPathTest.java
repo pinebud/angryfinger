@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import graph.Graph;
 import graph.Path;
+import graph.shortestpath.ShortestPath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class ShortestPathTest {
 		rawNodeList.add("4	2,6	3,3");
 		
 		Graph g = new Graph(rawNodeList);
-		Path p = g.calculateShortPath("1", "4");
+		ShortestPath sp = new ShortestPath(g);
+		Path p = sp.calculateShortestPath("1", "4");
 		Assert.assertEquals(6, p.getDistance());
 	}
 
