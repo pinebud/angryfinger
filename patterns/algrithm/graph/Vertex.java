@@ -3,10 +3,16 @@ package graph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex {
+public class Vertex implements Comparable<Vertex> {
 	private String id = null;
 	
+	private boolean known = false;
+	
+	private int dist = Integer.MAX_VALUE;
+	
 	private List<Vertex> adjcentVertices = new ArrayList<Vertex>();
+	
+	private Vertex pv = null;
 	
 	public Vertex(String id){
 		this.id = id;
@@ -16,7 +22,46 @@ public class Vertex {
 		adjcentVertices.add(v);
 	}
 	
+	public List<Vertex> getAdjVertices(){
+		return adjcentVertices;
+	}
+	
 	public String getId(){
 		return id;
 	}
+
+	public boolean isKnown() {
+		return known;
+	}
+
+	public void setKnown(boolean known) {
+		this.known = known;
+	}
+
+	public int getDist() {
+		return dist;
+	}
+
+	public void setDist(int dist) {
+		this.dist = dist;
+	}
+
+	public Vertex getPv() {
+		return pv;
+	}
+
+	public void setPv(Vertex pv) {
+		this.pv = pv;
+	}
+
+	@Override
+	public int compareTo(Vertex o) {
+		if(dist<o.getDist())
+			return -1;
+		if(dist>o.getDist())
+			return 1;
+		return 0;
+	}
+	
+	
 }
