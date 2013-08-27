@@ -3,7 +3,6 @@ package gragh.test;
 import static org.junit.Assert.*;
 
 import graph.Graph;
-import graph.Path;
 import graph.shortestpath.ShortestPath;
 
 import java.io.File;
