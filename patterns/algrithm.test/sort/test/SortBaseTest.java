@@ -19,7 +19,7 @@ import factory.InvalidParsedArraySize;
 import factory.SorterFactory;
 
 
-@SortWithType(SortType.quicksort)
+@SortWithType(SortType.merge)
 public class SortBaseTest {
 	
 	protected SortType[] sortTypes = null;
