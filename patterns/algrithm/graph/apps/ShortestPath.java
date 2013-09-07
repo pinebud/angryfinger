@@ -1,8 +1,9 @@
-package graph.shortestpath;
+package graph.apps;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 import graph.*;
 
@@ -26,14 +27,15 @@ public class ShortestPath {
 		startV.setDist(0);
 		vDistHeap.add(startV);
 //		init();
-		while(!areAllVerticesKnown()){
+		while(!g.areAllVerticesKnown()){
 			Vertex minDistV = vDistHeap.poll();
 			minDistV.setKnown(true);
-			List<Vertex> adjVertices = minDistV.getAdjVertices();
+			Set<Vertex> adjVertices = minDistV.getAdjVertices();
 			for(Vertex adjV: adjVertices){
 				int newDist = minDistV.getDist()+g.getEdge(minDistV, adjV).getWeight();
 				adjV.setDist(min(adjV.getDist(), newDist));
-				adjV.setPv(minDistV);
+//				adjV.setPv(minDistV);//Can't work for tracking the path
+//				minDistV.setNv(adjV);//Can't work for tracking the path
 				if(!vDistHeap.contains(adjV)&&!g.getEdge(minDistV, adjV).isExplored()){ //contains may cost O(n)?
 					g.getEdge(adjV, minDistV).setExplored(true);
 					g.getEdge(minDistV,adjV).setExplored(true);					
@@ -41,6 +43,7 @@ public class ShortestPath {
 				}
 			}
 		}
+		g.printForest();
 	}
 	
 	public int getShortestDistOf(String vertexId){
@@ -52,19 +55,6 @@ public class ShortestPath {
 		while(it.hasNext()){
 			vDistHeap.add(it.next());
 		}
-	}
-	
-	/*
-	 * O(n)
-	 */
-	private boolean areAllVerticesKnown(){
-		Iterator<Vertex> it = g.getVertexList().iterator();
-		while(it.hasNext()){
-			if(!it.next().isKnown()){
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	private int min(int a, int b){

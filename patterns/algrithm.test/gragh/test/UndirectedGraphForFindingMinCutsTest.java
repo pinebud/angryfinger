@@ -1,6 +1,6 @@
 package gragh.test;
 
-import graph.mincuts.UndirectedGraphForFindingMinCuts;
+import graph.apps.UndirectedGraphForFindingMinCuts;
 
 import java.io.File;
 import java.util.Arrays;

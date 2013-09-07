@@ -33,6 +33,10 @@ public class Edge {
 	public void setExplored(boolean explored) {
 		this.explored = explored;
 	}
-
+	
+	@Override
+	public String toString(){
+		return source.getId()+"->"+target.getId()+": "+weight;
+	}
 	
 }

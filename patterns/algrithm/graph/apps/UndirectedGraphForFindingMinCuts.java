@@ -1,4 +1,4 @@
-package graph.mincuts;
+package graph.apps;
 
 import java.util.ArrayList;
 import java.util.HashMap;

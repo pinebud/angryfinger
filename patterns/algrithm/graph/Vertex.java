@@ -1,7 +1,9 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Vertex implements Comparable<Vertex> {
 	private String id = null;
@@ -10,9 +12,11 @@ public class Vertex implements Comparable<Vertex> {
 	
 	private int dist = Integer.MAX_VALUE;
 	
-	private List<Vertex> adjcentVertices = new ArrayList<Vertex>();
+	private Set<Vertex> adjcentVertices = new HashSet<Vertex>();
 	
 	private Vertex pv = null;
+	
+	private Vertex nv = null;
 	
 	public Vertex(String id){
 		this.id = id;
@@ -22,7 +26,7 @@ public class Vertex implements Comparable<Vertex> {
 		adjcentVertices.add(v);
 	}
 	
-	public List<Vertex> getAdjVertices(){
+	public Set<Vertex> getAdjVertices(){
 		return adjcentVertices;
 	}
 	
@@ -52,6 +56,14 @@ public class Vertex implements Comparable<Vertex> {
 
 	public void setPv(Vertex pv) {
 		this.pv = pv;
+	}
+	
+	public Vertex getNv() {
+		return nv;
+	}
+
+	public void setNv(Vertex nv) {
+		this.nv = nv;
 	}
 
 	@Override
