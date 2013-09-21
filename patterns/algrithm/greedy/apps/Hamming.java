@@ -46,7 +46,24 @@ public class Hamming {
 			if (groupid == seq)
 				seq++;
 		}
-		return seq-1;
+		int[] statictics = new int[seq-1];
+		for (int i = 0; i < n; i++) {
+			Integer key = keyArray[i];
+			if(key==null)
+				continue;
+			int index = map.get(key)-1;
+			statictics[index]++;
+		}
+		int cnt = 0;
+		int sum = 0;
+		for(int i=0;i<seq-1;i++){
+			int sta = statictics[i];
+			if(sta!=0){
+				cnt++;
+				sum+=sta;
+			}
+		}
+		return cnt;
 	}
 
 	private int func(Integer number, int seq) {
