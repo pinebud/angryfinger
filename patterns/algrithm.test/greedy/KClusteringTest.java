@@ -1,9 +1,9 @@
-package gragh.test;
+package greedy;
 
 import static org.junit.Assert.*;
 
 import graph.Graph;
-import graph.apps.KClustering;
+import greedy.apps.KClustering;
 
 import java.io.File;
 import java.util.ArrayList;

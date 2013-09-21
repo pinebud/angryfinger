@@ -1,6 +1,5 @@
-package graph.apps;
+package greedy.apps;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,6 +8,11 @@ import graph.Graph;
 import graph.GraphUnion;
 import graph.Vertex;
 
+/**
+ * Greedy algorithm
+ * @author jing.ning
+ *
+ */
 public class KClustering {
 	private int K = 4;
 	
