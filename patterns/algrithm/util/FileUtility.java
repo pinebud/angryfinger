@@ -211,10 +211,14 @@ public class FileUtility {
 		return str;
 	}
 	
+	public static List<String> readFileByLineAsStringList(File source){
+		return readFileByLineAsStringList(source, 0);
+	}
+	
 	/**
 	 * This function can just be used to copy file
 	 */
-	public static List<String> readFileByLineAsStringList(File source) {
+	public static List<String> readFileByLineAsStringList(File source, int numOfIngnoredLine) {
 		List<String> list = new ArrayList<String>();
 		if (source == null || !source.exists())
 			return list;
@@ -225,8 +229,13 @@ public class FileUtility {
 				fr = new FileReader(source);
 				br = new BufferedReader(fr);
 				String data = "";
+				int cnt = numOfIngnoredLine;
 				while ((data = br.readLine()) != null) {
-					list.add(data);
+					if(cnt<1){
+						list.add(data);
+					}else{
+						cnt--;
+					}
 				}
 			
 		} catch (FileNotFoundException e) {

@@ -1,11 +1,9 @@
 package concurrency;
 
-public class Dwarf implements Runnable {
+public class Dwarf extends Visitor{
 
-	@Override
-	public void run() {
-		
-
+	public Dwarf(String name) {
+		super(name);
 	}
 
 }

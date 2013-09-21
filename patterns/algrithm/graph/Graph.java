@@ -62,13 +62,7 @@ public class Graph {
 			int weight = Integer.valueOf(weightString);
 			Vertex v = addVertex(vertexId);
 			Vertex adjVertex = addVertex(adjVertexId);
-			adjVertex.AddAdjVertex(v);
-			v.AddAdjVertex(adjVertex);
-			Edge edge = new Edge(v, adjVertex);
-			edge.setWeight(weight);
-			edgeMap.put(vertexId + "-" + adjVertexId, edge);
-			edgeMap.put(adjVertexId + "-" + vertexId, edge);
-			edges.add(edge);
+			addEdge(v, adjVertex,weight);
 		}
 	}
 
@@ -96,6 +90,41 @@ public class Graph {
 
 	public List<Vertex> getVertexList() {
 		return vertices;
+	}
+	
+	public void addVertex(Vertex vertex){
+		vertexMap.put(vertex.getId(), vertex);
+		vertices.add(vertex);
+	}
+	public void addEdge(Edge edge){
+		Vertex v1 = edge.getSource();
+		Vertex v2 = edge.getTarget();
+		edgeMap.put(v1.getId() + "-" + v2.getId(), edge);
+		edgeMap.put(v2.getId() + "-" + v1.getId(), edge);
+		edges.add(edge);
+	}
+	
+	public void addEdge(Vertex v1, Vertex v2, int weight){
+		v2.AddAdjVertex(v1);
+		v1.AddAdjVertex(v2);
+		Edge edge = new Edge(v1, v2);
+		edge.setWeight(weight);
+		edgeMap.put(v1.getId() + "-" + v2.getId(), edge);
+		edgeMap.put(v2.getId() + "-" + v1.getId(), edge);
+		edges.add(edge);
+	}
+	public void addVertices(List<Vertex> vertices){
+		this.vertices.addAll(vertices);
+		for(Vertex vertex: vertices){
+			
+		}
+	}
+	
+	public void addEdges(List<Edge> edges){
+		this.edges.addAll(edges);
+		for(Edge edge: edges){
+			
+		}
 	}
 	
 	/*
@@ -133,5 +162,27 @@ public class Graph {
 			if(e.isExplored())				
 				System.out.println(e.toString());
 		}
+	}
+	
+	public List<Graph> generateSubIslandGraphs(){
+		List<Graph> list = new ArrayList<Graph>();
+		for(Vertex v: vertices){
+			Graph g = new Graph();
+			g.addVertex(v);
+			list.add(g);
+		}
+		return list;
+	}
+	
+	public Graph(){
+		
+	}
+	
+	public String toString(){
+		StringBuilder str = new StringBuilder("[");
+		for(Vertex v: vertices){
+			str.append(v+",");
+		}
+		return str.substring(0, str.length()-1)+"]";
 	}
 }

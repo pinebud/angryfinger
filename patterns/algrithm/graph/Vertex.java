@@ -75,5 +75,8 @@ public class Vertex implements Comparable<Vertex> {
 		return 0;
 	}
 	
+	public String toString(){
+		return id;
+	}
 	
 }
