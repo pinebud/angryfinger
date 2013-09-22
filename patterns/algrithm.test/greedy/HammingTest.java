@@ -49,6 +49,7 @@ public class HammingTest {
 		List<String> lineList = FileUtility.readFileByLineAsStringList(inputFile_test03);
 		Hamming hamming = new Hamming(lineList);
 		int rlt0 = hamming.calculate();
+		int rlt1 = hamming.calculate();
 		int rlt = hamming.calculate();
 		Assert.assertEquals(29, rlt);
 	}
@@ -62,14 +63,19 @@ public class HammingTest {
 		Assert.assertEquals(2, rlt);
 	}
 	
-//	@Test
+	@Test
 	public void quiz() {
 		List<String> lineList = FileUtility.readFileByLineAsStringList(inputFile_quiz);
 		Hamming hamming = new Hamming(lineList);
 		int rlt0 = hamming.calculate();
+		System.out.println(rlt0);
+		int rlt1 = hamming.calculate();
+		System.out.println(rlt1);
+		int rlt2 = hamming.calculate();
+		System.out.println(rlt2);
 		int rlt = hamming.calculate();
-		System.out.println("rlt0 = "+rlt0);
 		System.out.println("rlt = "+rlt);
+//		System.out.println("rlt = "+rlt);
 	}
 
 }
