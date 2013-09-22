@@ -16,8 +16,6 @@ public class HammingTest {
 	private static final File inputFile_test00 = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/hammingtest00.txt");
 	private static final File inputFile_test01 = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/hammingtest01.txt");
 	private static final File inputFile_test02 = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/hammingtest02.txt");
-	private static final File inputFile_test03 = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/hammingtest03.txt");
-	private static final File inputFile_test04 = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/hammingtest04.txt");
 	private static final File inputFile_quiz = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/clustering_big.txt");
 //	private static final File inputFile_quiz = new File(Constants.RESOURCE_FOLDER+"/graph/clustering/cluster_big_100000_32.txt");
 	@Test
@@ -45,37 +43,11 @@ public class HammingTest {
 	}
 
 	@Test
-	public void test03() {
-		List<String> lineList = FileUtility.readFileByLineAsStringList(inputFile_test03);
-		Hamming hamming = new Hamming(lineList);
-		int rlt0 = hamming.calculate();
-		int rlt1 = hamming.calculate();
-		int rlt = hamming.calculate();
-		Assert.assertEquals(29, rlt);
-	}
-	
-	@Test
-	public void test04_nj() {
-		List<String> lineList = FileUtility.readFileByLineAsStringList(inputFile_test04);
-		Hamming hamming = new Hamming(lineList);
-		int rlt0 = hamming.calculate();
-		int rlt = hamming.calculate();
-		Assert.assertEquals(2, rlt);
-	}
-	
-	@Test
 	public void quiz() {
 		List<String> lineList = FileUtility.readFileByLineAsStringList(inputFile_quiz);
 		Hamming hamming = new Hamming(lineList);
-		int rlt0 = hamming.calculate();
-		System.out.println(rlt0);
-		int rlt1 = hamming.calculate();
-		System.out.println(rlt1);
-		int rlt2 = hamming.calculate();
-		System.out.println(rlt2);
 		int rlt = hamming.calculate();
-		System.out.println("rlt = "+rlt);
-//		System.out.println("rlt = "+rlt);
+		System.out.println(rlt);
 	}
 
 }
