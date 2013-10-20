@@ -98,7 +98,45 @@ public class FileUtility {
 		return true;
 	}
 	
-	public static Object[] readFileAsIntegerArray(File source){
+	public static Long[] readFileAsLongArray(File source){
+		Long[] array = new Long[10];
+		if (source == null || !source.exists()) {
+			return array;
+		}
+		List<Long> list = new ArrayList<Long>();
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			
+				fr = new FileReader(source);
+				br = new BufferedReader(fr);
+				String data = "";
+				while ((data = br.readLine()) != null) {
+					String trimdata = data.trim();
+					if(!trimdata.equals(""))
+						list.add(Long.valueOf(data));
+				}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		array = list.toArray(array);
+		return array;	
+	}
+	
+	public static Integer[] readFileAsIntegerArray(File source){
 		if (source == null || !source.exists())
 			return new Integer[0];
 		List<Integer> list = new ArrayList<Integer>();
@@ -129,7 +167,13 @@ public class FileUtility {
 				e.printStackTrace();
 			}
 		}
-		return list.toArray();
+		
+		
+		Integer[] array = new Integer[list.size()];
+		for(int i =0;i<array.length;i++){
+			array[i] = list.get(i); 
+		}
+		return array;
 	}
 
 	/**
@@ -165,6 +209,50 @@ public class FileUtility {
 			}
 		}
 		return str;
+	}
+	
+	public static List<String> readFileByLineAsStringList(File source){
+		return readFileByLineAsStringList(source, 0);
+	}
+	
+	/**
+	 * This function can just be used to copy file
+	 */
+	public static List<String> readFileByLineAsStringList(File source, int numOfIngnoredLine) {
+		List<String> list = new ArrayList<String>();
+		if (source == null || !source.exists())
+			return list;
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			
+				fr = new FileReader(source);
+				br = new BufferedReader(fr);
+				String data = "";
+				int cnt = numOfIngnoredLine;
+				while ((data = br.readLine()) != null) {
+					if(cnt<1){
+						list.add(data);
+					}else{
+						cnt--;
+					}
+				}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 	
 	/**

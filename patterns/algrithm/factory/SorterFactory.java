@@ -1,6 +1,10 @@
 package factory;
 
 import sort.*;
+import sort.impl.BubbleSort;
+import sort.impl.MergeSort;
+import sort.impl.NullSort;
+import sort.impl.QuickSort;
 
 public class SorterFactory {
 	
