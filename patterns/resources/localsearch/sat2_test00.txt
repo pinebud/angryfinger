@@ -1,0 +1,5 @@
+3
+1 2
+-1 -2
+2 3
+#This case is to test the satisfiable result: 1=true, 2=false, 3=true or 1=false, 2=true, 3=true/false
